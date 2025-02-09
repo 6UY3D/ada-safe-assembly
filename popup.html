@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>XPro Enhancer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="header-content">
+        <h1>XPro Enhancer</h1>
+        <span class="version">v1.0.0</span>
+      </div>
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="extensionEnabled">
+          <span class="slider"></span>
+        </label>
+        <span>Enable Extension</span>
+      </div>
+    </header>
+
+    <nav class="feature-tabs">
+      <button class="tab-button active" data-tab="features">
+        <span class="tab-icon">⚡</span>
+        Features
+      </button>
+      <button class="tab-button" data-tab="columns">
+        <span class="tab-icon">📊</span>
+        Columns
+      </button>
+      <button class="tab-button" data-tab="bookmarks">
+        <span class="tab-icon">🔖</span>
+        Bookmarks
+      </button>
+      <button class="tab-button" data-tab="scheduler">
+        <span class="tab-icon">⏰</span>
+        Scheduler
+      </button>
+    </nav>
+
+    <main class="tab-content">
+      <section id="features" class="tab-panel active">
+        <div class="section-header">
+          <h2>Core Features</h2>
+          <button id="toggleAll" class="secondary-button">Enable All</button>
+        </div>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-header">
+              <div class="feature-title">
+                <h3>Multi-Column Layout</h3>
+                <span class="feature-badge">Pro</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="multiColumn">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <p>Enable TweetDeck-style multi-column layout</p>
+            <div class="feature-stats">
+              <span class="stat">
+                <span class="stat-label">Columns</span>
+                <span class="stat-value" id="columnCount">0</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-header">
+              <div class="feature-title">
+                <h3>Ad Blocking</h3>
+                <span class="feature-badge">Basic</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="adBlocking">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <p>Remove promoted tweets and ads</p>
+            <div class="feature-stats">
+              <span class="stat">
+                <span class="stat-label">Blocked</span>
+                <span class="stat-value" id="blockedCount">0</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-header">
+              <div class="feature-title">
+                <h3>Shadowban Checker</h3>
+                <span class="feature-badge">Pro</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="shadowbanChecker">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <p>Monitor account visibility and restrictions</p>
+            <div class="feature-stats">
+              <span class="stat">
+                <span class="stat-label">Status</span>
+                <span class="stat-value" id="shadowbanStatus">-</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-header">
+              <div class="feature-title">
+                <h3>Smart Bookmarks</h3>
+                <span class="feature-badge">Pro</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="smartBookmarks">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <p>Organize saved tweets into categories</p>
+            <div class="feature-stats">
+              <span class="stat">
+                <span class="stat-label">Saved</span>
+                <span class="stat-value" id="bookmarkCount">0</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-header">
+              <div class="feature-title">
+                <h3>Tweet Scheduler</h3>
+                <span class="feature-badge">Pro</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="tweetScheduler">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <p>Schedule tweets and threads</p>
+            <div class="feature-stats">
+              <span class="stat">
+                <span class="stat-label">Scheduled</span>
+                <span class="stat-value" id="scheduledCount">0</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-header">
+              <div class="feature-title">
+                <h3>Enhanced Search</h3>
+                <span class="feature-badge">Basic</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="enhancedSearch">
+                <span class="slider"></span>
+              </label>
+            </div>
+            <p>Advanced search filters and tools</p>
+            <div class="feature-stats">
+              <span class="stat">
+                <span class="stat-label">Filters</span>
+                <span class="stat-value" id="filterCount">0</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="columns" class="tab-panel">
+        <div class="section-header">
+          <h2>Column Management</h2>
+          <button id="addColumn" class="primary-button">Add Column</button>
+        </div>
+        <div class="column-list" id="columnList"></div>
+      </section>
+
+      <section id="bookmarks" class="tab-panel">
+        <div class="section-header">
+          <h2>Saved Tweets</h2>
+          <div class="search-box">
+            <input type="text" id="bookmarkSearch" placeholder="Search bookmarks...">
+          </div>
+        </div>
+        <div class="bookmark-categories" id="bookmarkCategories"></div>
+      </section>
+
+      <section id="scheduler" class="tab-panel">
+        <div class="section-header">
+          <h2>Tweet Scheduler</h2>
+          <button id="newSchedule" class="primary-button">New Schedule</button>
+        </div>
+        <div class="scheduler-content">
+          <div class="scheduled-list" id="scheduledList"></div>
+          <div class="scheduler-form" id="schedulerForm">
+            <textarea id="scheduledTweet" placeholder="What's happening?"></textarea>
+            <div class="form-controls">
+              <input type="datetime-local" id="scheduleTime">
+              <button id="scheduleTweet" class="primary-button">Schedule Tweet</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="popup-footer">
+      <div class="status-bar">
+        <span id="statusMessage"></span>
+        <span id="syncStatus">Last synced: Just now</span>
+      </div>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
